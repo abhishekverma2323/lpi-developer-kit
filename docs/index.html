@@ -133,7 +133,13 @@
                 🏆 Top Scorer<br>
                 <span style="color:#4a5568;font-size:0.65rem">80%+ eval score</span><br>
                 🛡️ Security<br>
-                <span style="color:#4a5568;font-size:0.65rem">QA & Security track</span>
+                <span style="color:#4a5568;font-size:0.65rem">QA & Security track</span><br>
+                ⚡ Multi-track<br>
+                <span style="color:#4a5568;font-size:0.65rem">2+ tracks</span><br>
+                🔥 On Fire<br>
+                <span style="color:#4a5568;font-size:0.65rem">3+ tracks</span><br>
+                💎 Diamond<br>
+                <span style="color:#4a5568;font-size:0.65rem">All 5 tracks</span>
             </div>
         </div>
     </div>
@@ -175,7 +181,11 @@ fetch('data.json')
             if ((d.score_pct || 0) >= 80) d._badges.push({icon:'🏆', tip:'Top Scorer — 80%+ evaluation score'});
             // Easter egg finder
             if (d.found_easter_egg) d._badges.push({icon:'🥚', tip:'Found the easter egg in the source code'});
-            // Multi-track (future — when someone submits to multiple tracks)
+            // Multi-track
+            const tc = (d.track||'').split(/[,\/]/).filter(t => t.trim() && t.trim().match(/^[A-E]/)).length;
+            if (tc >= 5) d._badges.push({icon:'💎', tip:'Diamond — completed ALL 5 tracks'});
+            else if (tc >= 3) d._badges.push({icon:'🔥', tip:'On Fire — active in 3+ tracks'});
+            else if (tc >= 2) d._badges.push({icon:'⚡', tip:'Multi-track — active in 2 tracks'});
             // Security champion
             if ((d.track||'').includes('E') && d.level >= 2) d._badges.push({icon:'🛡️', tip:'Security Champion — QA & Security track'});
         });
